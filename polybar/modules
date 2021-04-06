@@ -1,0 +1,325 @@
+##############################################################################
+#                                    MODULES                                 #
+##############################################################################
+# https://fontawesome.com/cheatsheet/pro
+
+[module/audio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+format-volume-background = ${color.alt-bg}
+format-volume-foreground = ${color.yellow}
+format-volume-padding = 0
+
+format-muted = <label-muted>
+format-muted-background = ${color.alt-bg}
+format-muted-foreground = ${color.red}
+format-muted-padding = 0
+
+label-volume = %percentage%%
+
+label-muted = "Muted"
+
+[module/audio_i]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume>
+format-volume-background = ${color.alt-bg}
+format-volume-foreground = ${color.yellow}
+format-volume-padding = 1
+
+format-muted-background = ${color.alt-bg}
+format-muted-foreground = ${color.red}
+format-muted-padding = 1
+
+label-muted = 
+label-muted-foreground = ${color.red}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+format = <label>
+format-background = ${color.alt-bg} 
+format-foreground = ${color.cyan}
+format-padding = 1
+
+# time = %H:%M // %a %d/%m
+time = "%I:%M %p /"
+label = %time% 
+
+[module/date_i]
+type = internal/date
+
+interval = 1.0
+
+# time = 
+# time = 
+
+time = "%I:%M %p"
+date = "%d %b"
+
+format = <label>
+format-background = ${color.alt-bg}
+format-foreground = ${color.cyan}
+format-padding = 0
+ 
+
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+fuzzy-match = true
+
+enable-click = true
+enable-scroll = false
+
+wrapping-scroll = false
+reverse-scroll = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-default = 
+
+format = <label-state> <label-mode>
+# format = <label-state>
+
+# label-focused = "  "
+label-focused = %index%
+label-focused-foreground = ${color.cyan}
+label-focused-background = ${color.alt-bg}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-foreground = ${color.fg}
+label-unfocused-background = ${color.alt-bg}
+label-unfocused-padding = 1
+
+;label-occupied = ""
+;label-occupied-foreground = ${color.fg};
+;label-occupied-background = ${color.alt-bg}
+;label-occupied-padding = 1
+
+;label-empty = ""
+;label-empty-foreground = ${color.fg}
+;label-empty-background = ${color.alt-bg}
+;label-empty-padding = 1
+
+;label-urgent = "  "
+;label-urgent-foreground = ${color.red}
+;label-urgent-background = ${color.alt-bg}
+;label-urgent-padding = 0
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground = ${color.fg}
+label-mode-background = ${color.alt-bg}
+
+label-separator = ·
+label-separator-padding = 0
+label-separator-foreground = ${color.fg}
+label-separator-background = ${color.alt-bg}
+
+[module/network]
+type = internal/network
+interface = wlp61s0
+
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+
+label-connected = %essid%
+format-connected = <ramp-signal> <label-connected>
+format-connected-background = ${color.alt-bg}
+format-connected-foreground = ${color.green}
+format-connected-padding = 1
+ 
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.alt-bg}
+format-disconnected-foreground = ${color.red}
+format-disconnected-padding = 1
+
+label-disconnected =  %ifname%
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+
+[module/separator]
+type = custom/text
+
+content = " "
+
+[module/separatorIndent]
+type = custom/text
+
+content = " "
+content-background = ${color.alt-bg}
+content-padding = 0
+
+[module/separatorText]
+type = custom/text
+
+content = "|"
+content-background = ${color.alt-bg}
+content-padding = 0
+
+
+[module/spotify]
+type = custom/script
+tail = true
+;format-prefix = "  "
+;format-prefix-foreground = ${color.cyan}
+format = <label>
+label = %output:0:40:...%
+exec = ~/.config/polybar/scripts/spotify_status.sh
+click-left = "playerctl play-pause"
+
+[module/spotify_prev]
+type = custom/script
+format-font = 1
+format-padding = 2
+format-foreground = ${color.fg}
+exec = echo " "
+exec-if = "pgrep spotify"
+click-left = "playerctl previous"
+
+[module/spotify_next]
+type = custom/script
+format-font = 1
+format-padding = 2
+format-foreground = ${color.fg}
+exec = echo " "
+exec-if = "pgrep spotify"
+click-left = "playerctl next"
+
+[module/title]
+type = internal/xwindow
+
+label = %title%
+label-maxlen = 30
+
+format =  <label>
+format-background = ${color.alt-bg}
+format-padding = 1
+
+; Used instead of label when there is no window title
+label-empty = akhilsukh01@thinkpad
+
+[module/updates]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/updates.sh
+
+tail = true
+
+format =  <label>
+format-background = ${color.alt-bg}
+format-foreground = ${color.red}
+format-padding = 1
+
+label = %output%
+
+click-left = exec io.elementary.appcenter
+
+[module/dashboard]
+type = custom/text
+
+click-left = exec gnome-terminal -- /bin/sh -c 'neofetch; sleep 10'
+content = 
+content-background = ${color.alt-bg}
+content-foreground = ${color.red}
+content-padding = 1
+
+[module/battery]
+type = internal/battery
+format-padding = 1
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 2
+
+format-charging = <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+full-at = 100
+label-full = Full
+format-full = <ramp-capacity> <label-full>
+
+; 
+label-charging =  %percentage%% +
+label-discharging = %percentage%% -
+label-charging-padding-left = 0
+label-charging-padding-right = 1
+label-discharging-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-width = 10
+
+format-charging-background = ${color.alt-bg}
+format-discharging-background = ${color.alt-bg}
+
+format-charging-foreground = ${color.purple}
+format-discharging-foreground = ${color.purple}
+
+format-full-foreground =  ${color.yellow}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+format-margin = 0
+format-background = ${colors.background}
+format-foreground = ${colors.color3}
+format-padding = 2
+
+label-open = 
+label-close = 
+label-separator = |
+
+reboot
+menu-0-1 = 
+menu-0-1-exec = menu-open-2
+
+poweroff
+menu-0-2 = 
+menu-0-2-exec = menu-open-3
+
+logout
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
+
+menu-2-0 = 
+menu-2-0-exec = reboot
+
+menu-3-0 = 
+menu-3-0-exec = poweroff
+
+menu-1-0 = 
+menu-1-0-exec = i3-msg exit || openbox --exit
+
