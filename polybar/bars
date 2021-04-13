@@ -92,7 +92,7 @@ font-2 = "Stick:size=9;2"
 # Modules are added to one of the available blocks
 modules-left = i3 
 modules-center = spotify_prev spotify spotify_next
-modules-right = updates  separatorText audio_i audio separatorIndent separatorText network separatorText date date_i separatorIndent separatorText separatorIndent battery separatorText powermenu
+modules-right = updates  separatorText audio_i audio separatorIndent separatorText network separatorText separatorIndent date time separatorText separatorIndent battery
 
 # Opacity value between 0.0 and 1.0 used on fade in/out
 dim-value = 1.0

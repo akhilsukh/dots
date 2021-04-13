@@ -43,7 +43,7 @@ ramp-volume-4 = 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
 
-[module/date]
+[module/time]
 type = internal/date
 
 interval = 1.0
@@ -53,11 +53,13 @@ format-background = ${color.alt-bg}
 format-foreground = ${color.cyan}
 format-padding = 1
 
-# time = %H:%M // %a %d/%m
-time = "%I:%M %p /"
-label = %time% 
+# zero-padded hour: I
+# space-padded hour: l
+time = "%l:%M %p"
+label = %time%
 
-[module/date_i]
+
+[module/date]
 type = internal/date
 
 interval = 1.0
@@ -65,14 +67,14 @@ interval = 1.0
 # time = 
 # time = 
 
-time = "%I:%M %p"
-date = "%d %b"
+# zero-padded day: d
+# space-padded day: e
+date = "%a %d %b"
 
 format = <label>
 format-background = ${color.alt-bg}
 format-foreground = ${color.cyan}
 format-padding = 0
- 
 
 
 [module/i3]
